@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PayBangla SMS 1.1.0\n"
+"Report-Msgid-Bugs-To: https://khulnasoft.com\n"
+"POT-Creation-Date: 2026-04-14 22:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: KhulnaSoft IT <info@khulnasoft.com>\n"
+"Language-Team: KhulnaSoft IT <info@khulnasoft.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KhulnaSoft\n"
+
+#: includes/abstract-khulnasoft-gateway.php:56
+msgid "Please add your %s number"
+msgstr ""
+
+#: includes/abstract-khulnasoft-gateway.php:58
+msgid "Incorrect %s number format."
+msgstr ""
+
+#: includes/abstract-khulnasoft-gateway.php:62
+msgid "Please add your %s transaction ID"
+msgstr ""
+
+#: includes/abstract-khulnasoft-gateway.php:64
+msgid "Invalid Transaction ID format."
+msgstr ""
+
+#: includes/abstract-khulnasoft-gateway.php:73
+msgid "This Transaction ID has already been used. Please provide a unique one."
+msgstr ""
+
+#: bkash.php:58
+msgid "bKash Charge"
+msgstr ""
+
+#: rocket.php:58
+msgid "Rocket Charge"
+msgstr ""
+
+#: nagad.php:58
+msgid "Nagad Charge"
+msgstr ""
