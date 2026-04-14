@@ -5,16 +5,6 @@
  * @package PayBangla
  */
 
-// Define constants for wp-phpunit
-define( 'WP_TESTS_DOMAIN', 'localhost' );
-define( 'WP_TESTS_EMAIL', 'admin@example.org' );
-define( 'WP_TESTS_TITLE', 'Test Site' );
-define( 'WP_PHP_BINARY', 'php' );
-define( 'DB_NAME', 'wordpress_test' );
-define( 'DB_USER', 'root' );
-define( 'DB_PASS', 'root' );
-define( 'DB_HOST', 'localhost' );
-
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $_tests_dir ) {
