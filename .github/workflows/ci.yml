@@ -9,34 +9,37 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           extensions: mbstring, intl
+          tools: phpunit
 
       - name: Install Dependencies
         run: composer install
 
-      - name: Create WP Tests Config
+      - name: Setup Database
         run: |
-          cat <<EOF > wp-tests-config.php
-          <?php
-          define( 'ABSPATH', '$(pwd)/vendor/wp-phpunit/wp-phpunit/src/' );
-          define( 'WP_TESTS_DOMAIN', 'localhost' );
-          define( 'WP_TESTS_EMAIL', 'admin@example.org' );
-          define( 'WP_TESTS_TITLE', 'Test Site' );
-          define( 'WP_PHP_BINARY', 'php' );
-          define( 'DB_NAME', 'wordpress_test' );
-          define( 'DB_USER', 'root' );
-          define( 'DB_PASS', 'root' );
-          define( 'DB_HOST', 'localhost' );
-          \$table_prefix = 'wptests_';
-          EOF
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE wordpress_test;"
+
+      - name: Install WP Tests Setup
+        run: |
+          bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
 
       - name: Run PHPUnit Tests
         run: ./vendor/bin/phpunit --configuration phpunit.xml.dist
+

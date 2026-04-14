@@ -5,24 +5,14 @@
  * @package PayBangla
  */
 
-// Force define mandatory constants for wp-phpunit
-if ( ! defined( 'WP_TESTS_DOMAIN' ) ) define( 'WP_TESTS_DOMAIN', 'localhost' );
-if ( ! defined( 'WP_TESTS_EMAIL' ) ) define( 'WP_TESTS_EMAIL', 'admin@example.org' );
-if ( ! defined( 'WP_TESTS_TITLE' ) ) define( 'WP_TESTS_TITLE', 'Test Site' );
-if ( ! defined( 'WP_PHP_BINARY' ) ) define( 'WP_PHP_BINARY', 'php' );
-if ( ! defined( 'DB_NAME' ) ) define( 'DB_NAME', 'wordpress_test' );
-if ( ! defined( 'DB_USER' ) ) define( 'DB_USER', 'root' );
-if ( ! defined( 'DB_PASS' ) ) define( 'DB_PASS', 'root' );
-if ( ! defined( 'DB_HOST' ) ) define( 'DB_HOST', 'localhost' );
-
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $_tests_dir ) {
-	$_tests_dir = dirname( __DIR__ ) . '/vendor/wp-phpunit/wp-phpunit';
+	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
 if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
-	echo "Could not find $_tests_dir/includes/functions.php, have you run composer install ?" . PHP_EOL;
+	echo "Could not find $_tests_dir/includes/functions.php, have you run bin/install-wp-tests.sh ?" . PHP_EOL;
 	exit( 1 );
 }
 
