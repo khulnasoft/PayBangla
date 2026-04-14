@@ -1,0 +1,40 @@
+name: Deploy to WordPress.org
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring, intl
+
+      - name: Install Dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Build Plugin Zip
+        run: |
+          mkdir -p build/paybangla
+          cp -r assets build/paybangla/
+          cp -r includes build/paybangla/
+          cp -r languages build/paybangla/
+          cp -r src build/paybangla/
+          cp index.php bkash.php rocket.php nagad.php readme.txt composer.json LICENSE build/paybangla/
+          cd build && zip -r ../paybangla.zip paybangla
+
+      - name: WordPress.org Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_USERNAME: ${{ secrets.WPORG_SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.WPORG_SVN_PASSWORD }}
+          SLUG: paybangla
+          ASSETS_DIR: assets/images
