@@ -23,7 +23,13 @@ jobs:
         run: composer install
 
       - name: Run PHPUnit Tests
-        uses: 10up/action-wordpress-plugin-tests@main
-        with:
-          php-version: '7.4'
-          tide: true
+        run: ./vendor/bin/phpunit --configuration phpunit.xml.dist
+        env:
+          WP_TESTS_DOMAIN: localhost
+          WP_TESTS_EMAIL: admin@example.org
+          WP_TESTS_TITLE: "Test Site"
+          WP_PHP_BINARY: php
+          DB_NAME: wordpress_test
+          DB_USER: root
+          DB_PASS: root
+          DB_HOST: localhost
