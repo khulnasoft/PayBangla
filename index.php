@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: PayBangla: #1 bKash, Rocket & Nagad Gateway for WooCommerce
-Plugin URI:  http://atozneturalcare.com
+Plugin URI:  https://github.com/khulnasoft/PayBangla
 Description: The most advanced mobile banking solution for WooCommerce in Bangladesh. Securely accept bKash, Rocket, and Nagad payments with automated SMS notifications, real-time transaction ID verification, and a premium 3-step checkout experience.
 Version:     1.1.0
 Author:      KhulnaSoft IT
