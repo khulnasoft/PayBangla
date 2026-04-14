@@ -23,6 +23,12 @@ require_once $_tests_dir . '/includes/functions.php';
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
+	// Load WooCommerce first
+	$wc_path = '/tmp/wordpress/wp-content/plugins/woocommerce/woocommerce.php';
+	if ( file_exists( $wc_path ) ) {
+		require_once $wc_path;
+	}
+	
 	require dirname( dirname( __FILE__ ) ) . '/index.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
