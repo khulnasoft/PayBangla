@@ -384,7 +384,14 @@ function khulnasoft_dashboard_widget_display() {
     echo '<p><a href="' . admin_url('edit.php?post_type=shop_order') . '" class="button">View all orders</a></p>';
 }
 
-require_once('includes/abstract-khulnasoft-gateway.php');
-require_once('bkash.php');
-require_once('rocket.php');
-require_once('nagad.php');
+add_action( 'plugins_loaded', 'khulnasoft_paybangla_init', 11 );
+function khulnasoft_paybangla_init() {
+    if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
+        return;
+    }
+    require_once( plugin_dir_path( __FILE__ ) . 'includes/abstract-khulnasoft-gateway.php' );
+    require_once( plugin_dir_path( __FILE__ ) . 'bkash.php' );
+    require_once( plugin_dir_path( __FILE__ ) . 'rocket.php' );
+    require_once( plugin_dir_path( __FILE__ ) . 'nagad.php' );
+}
+
